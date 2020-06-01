@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: netflix-zuul-api-gateway-server
+    
+server:
+  port: 8765
+
+  ribbon:
+  ReadTimeout : 60000
+  ConnectTimeout : 60000
+  
+zuul :
+  sensitiveHeaders : Cookie,Set-Cookie
+  routes:
+    users:
+      path: /cts/superstore/**
+      serviceId: get-customer-id-service
+      
+  ignored-headers :  Access-Control-Allow-Credentials, Access-Control-Allow-Origin 
+  
+  host.connect-timeout-millis : 60000
+  host.socket-timeout-millis : 60000
+  
+  
+endpoints : 
+  routes : 
+    sensitive : false
